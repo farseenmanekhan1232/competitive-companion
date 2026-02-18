@@ -133,3 +133,11 @@ dist
 build-*/
 dist/
 firefox-tmp/
+
+# macOS
+.DS_Store
+
+# Xcode
+xcuserdata/
+*.xcworkspace
+!default.xcworkspace
