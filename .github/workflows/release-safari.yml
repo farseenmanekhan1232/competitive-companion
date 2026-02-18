@@ -78,23 +78,15 @@ jobs:
             PROVISIONING_PROFILE_SPECIFIER="" \
             CODE_SIGN_IDENTITY="Apple Distribution"
 
-      - name: Export App
+      - name: Zip App
         run: |
-          # Export the app using export options based on the provisioning profile
-          # This step often requires an ExportOptions.plist. Creating a basic one here.
-          /usr/libexec/PlistBuddy -c "Add :method string app-store" export_options.plist
-          /usr/libexec/PlistBuddy -c "Add :provisioningProfiles dict" export_options.plist
-          # Note: Real implementation needs the bundle ID and profile name mapping here
-          
-          xcodebuild -exportArchive \
-            -archivePath $RUNNER_TEMP/CompetitiveCompanion.xcarchive \
-            -exportOptionsPlist export_options.plist \
-            -exportPath $RUNNER_TEMP/ExportedApp
+          # Bypass exportArchive (which requires Installer Cert) and zip the .app directly from Archive
+          cd "$RUNNER_TEMP/CompetitiveCompanion.xcarchive/Products/Applications"
+          zip -r "$RUNNER_TEMP/CompetitiveCompanion.zip" "Competitive Companion.app"
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            $RUNNER_TEMP/ExportedApp/*.app
-            $RUNNER_TEMP/ExportedApp/*.ipa
+            $RUNNER_TEMP/CompetitiveCompanion.zip
