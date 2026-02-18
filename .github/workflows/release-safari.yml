@@ -82,11 +82,11 @@ jobs:
         run: |
           # Bypass exportArchive (which requires Installer Cert) and zip the .app directly from Archive
           cd "$RUNNER_TEMP/CompetitiveCompanion.xcarchive/Products/Applications"
-          zip -r "$RUNNER_TEMP/CompetitiveCompanion.zip" "Competitive Companion.app"
+          zip -r "$GITHUB_WORKSPACE/CompetitiveCompanion.zip" "Competitive Companion.app"
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            $RUNNER_TEMP/CompetitiveCompanion.zip
+            CompetitiveCompanion.zip
