@@ -65,6 +65,7 @@ jobs:
           # Copy web extension assets to the app extension resources
           # ASSUMPTION: The Xcode project is located in 'safari/Competitive Companion'
           # Adjust paths based on where the project is generated
+          mkdir -p "safari/Competitive Companion/Competitive Companion Extension/Resources"
           cp -r build-safari/* "safari/Competitive Companion/Competitive Companion Extension/Resources/"
           
           # Build and Archive
