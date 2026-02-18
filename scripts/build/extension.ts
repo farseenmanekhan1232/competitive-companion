@@ -82,6 +82,13 @@ await Promise.all(
             service_worker: 'js/background.js',
             type: 'module',
           };
+        } else if (target === 'safari') {
+          manifest.optional_host_permissions = optionalHostPermissions;
+
+          manifest.background = {
+            service_worker: 'js/background.js',
+            type: 'module',
+          };
         } else {
           manifest.optional_permissions = optionalHostPermissions;
 
