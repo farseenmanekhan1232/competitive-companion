@@ -9,24 +9,16 @@ This guide explains how to build, sign, and publish the Safari extension for Com
 
 ## One-Time Setup
 
-1.  **Generate the Xcode Project Wrapper**:
-    Run the following command in the root of the repository:
-    ```bash
-    mkdir -p safari
-    xcrun safari-web-extension-converter build-safari --project-location safari --app-name "Competitive Companion" --bundle-identifier com.yourname.competitive-companion
-    ```
-    *Note: Replace `com.yourname.competitive-companion` with your actual Bundle ID.*
+1.  **Xcode Project Generator (Already Completed)**:
+    The `safari` directory has already been generated using `xcrun` and committed to the repository. You do **not** need to run `xcrun` again.
 
-2.  **Commit the Project**:
-    Commit the generated `safari` directory to the repository. This project serves as the container for the extension.
-
-3.  **Configure Signing in Xcode**:
-    Open `safari/Competitive Companion.xcodeproj`.
-    - Select the "Competitive Companion" target.
-    - Go to "Signing & Capabilities".
-    - Select your Team.
-    - Repeat for the "Competitive Companion Extension" target.
-    - Ensure both targets build and run locally.
+2.  **Configure Signing in Xcode (Required)**:
+    Open `safari/Competitive Companion.xcodeproj` in Xcode.
+    - Select the "Competitive Companion" target (the app wrapper).
+    - Go to the **Signing & Capabilities** tab.
+    - Under "Team", select your **Apple Development Team**.
+    - Repeat this step for the "Competitive Companion Extension" target.
+    - **Verify**: click the "Run" button (Play icon) in Xcode to build and launch the app locally. It should open a macOS window and offer to open Safari Preferences.
 
 ## GitHub Secrets Setup
 
@@ -48,6 +40,14 @@ To enable the GitHub Action to sign your app, you need to add the following secr
     Paste into `MACOS_CERTIFICATE`.
 3.  **Provisioning Profile**: Download from Apple Developer Portal. Base64 encode it similarly and paste into `PROVISIONING_PROFILE_BASE64`.
 
-## Running the Workflow
+## Fork Maintenance
 
-The release workflow runs automatically when you push a tag starting with `v*` (e.g., `v2.63.0`). You can also trigger it manually from the "Actions" tab.
+### Automatic Sync
+This fork is configured with a `Sync Upstream` workflow that runs daily. It fetches changes from `jmerle/competitive-companion` and updates your `master` branch.
+
+### Handling Conflicts
+If the upstream repository modifies files that conflict with your Safari-specific changes (e.g., deeply conflicting changes in `package.json` or `scripts/build`), the sync workflow might fail. In that case:
+1.  Fetch upstream manually: `git fetch upstream`
+2.  Merge: `git merge upstream/master`
+3.  Resolve conflicts locally.
+4.  Push: `git push origin master`

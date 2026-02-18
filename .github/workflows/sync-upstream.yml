@@ -1,0 +1,34 @@
+name: Sync Upstream
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run daily at midnight
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  sync_with_upstream:
+    name: Sync with Upstream
+    runs-on: ubuntu-latest
+    if: ${{ github.event.repository.fork }}
+
+    steps:
+      - name: Checkout target
+        uses: actions/checkout@v4
+
+      - name: Sync Upstream
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+        with:
+          target_sync_branch: master
+          # REQUIRED 'target_repo_token' exactly like this!
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+          upstream_sync_repo: jmerle/competitive-companion
+          upstream_sync_branch: master
+
+          # Set test_mode to true to run tests instead of the true action!!
+          test_mode: false
+
+      - name: Timestamp
+        run: date
