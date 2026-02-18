@@ -69,7 +69,7 @@ jobs:
           cp -r build-safari/* "safari/Competitive Companion/Competitive Companion Extension/Resources/"
           
           # Build and Archive
-          xcodebuild -project "safari/Competitive Companion.xcodeproj" \
+          xcodebuild -project "safari/Competitive Companion/Competitive Companion.xcodeproj" \
             -scheme "Competitive Companion" \
             -configuration Release \
             -archivePath $RUNNER_TEMP/CompetitiveCompanion.xcarchive \
