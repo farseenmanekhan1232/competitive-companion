@@ -13,6 +13,7 @@
     "build:chrome": "tsx scripts/build/extension.ts chrome true false",
     "build:firefox": "tsx scripts/build/extension.ts firefox true false",
     "build:safari": "tsx scripts/build/extension.ts safari true false",
+    "build:safari:xcode": "pnpm build:safari && mkdir -p \"safari/Competitive Companion/Competitive Companion Extension/Resources\" && cp -r build-safari/* \"safari/Competitive Companion/Competitive Companion Extension/Resources/\"",
     "build:test": "tsx scripts/build/test.ts",
     "watch:chrome": "tsx scripts/build/extension.ts chrome false true",
     "watch:firefox": "tsx scripts/build/extension.ts firefox false true",
