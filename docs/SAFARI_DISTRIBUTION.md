@@ -51,3 +51,47 @@ If the upstream repository modifies files that conflict with your Safari-specifi
 2.  Merge: `git merge upstream/master`
 3.  Resolve conflicts locally.
 4.  Push: `git push origin master`
+
+## App Store Submission
+
+### Manual (via Xcode)
+To submit to the App Store, it is easiest to use Xcode locally:
+
+1.  **Prepare the Project**:
+    Run this command to build the extension and copy files into the Xcode project:
+    ```bash
+    pnpm build:safari:xcode
+    ```
+
+2.  **Open in Xcode**:
+    Open `safari/Competitive Companion/Competitive Companion.xcodeproj`.
+
+3.  **Archive & Upload**:
+    - Select **Product** > **Archive**.
+    - In the Organizer, click **Distribute App**.
+    - Select **App Store Connect** > **Upload**.
+    - Follow the prompts (Xcode handles certificates and signing automatically).
+
+### Next Steps in App Store Connect
+
+Once the upload is complete:
+
+1.  **Log in**: Go to [App Store Connect](https://appstoreconnect.apple.com).
+2.  **My Apps**: Click the "+" to create a new App (if you haven't already).
+    - **Platform**: macOS.
+    - **Name**: Competitive Companion.
+    - **Language**: English (US).
+    - **Bundle ID**: `com.competitive-companion.safari`.
+    - **SKU**: `competitive-companion-safari`.
+3.  **Prepare for Submission**:
+    - **Screenshots**: Upload screenshots of the extension in action (Mac size).
+    - **Description**: Add a description of what the extension does.
+    - **Keywords**: competitive programming, cp, parser, codeforces, etc.
+    - **Support & Marketing URL**: Link to the GitHub repository.
+    - **Privacy Policy URL**: Link to `https://github.com/farseenmanekhan1232/competitive-companion/blob/master/PRIVACY.md` (once pushed).
+    - **Build**: Scroll down to "Build" and click (+). Select the build you just uploaded via Xcode.
+4.  **Copyright**: `2026 Farseen` (or your name).
+5.  **Review Information**:
+    - **Sign-in required**: Uncheck (no login needed).
+    - **Notes**: "This is a Safari Web Extension for parsing competitive programming problems."
+6.  **Submit for Review**: Click "Add for Review" and then "Submit".
