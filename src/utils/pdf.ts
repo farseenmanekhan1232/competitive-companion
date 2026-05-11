@@ -3,11 +3,13 @@ const pdfjsLibPromise = import('pdfjs-dist/build/pdf.min.mjs');
 // @ts-expect-error There are no types for this import
 const pdfjsWorkerPromise = import('pdfjs-dist/build/pdf.worker.min.mjs');
 
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
 export async function readPdf(pdfUrl: string): Promise<string[]> {
   const pdfjsLib = await pdfjsLibPromise;
-  const pdfjsWorker = await pdfjsWorkerPromise;
 
-  if (!pdfjsLib.GlobalWorkerOptions.workerPort) {
+  if (!isSafari && !pdfjsLib.GlobalWorkerOptions.workerPort) {
+    const pdfjsWorker = await pdfjsWorkerPromise;
     pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(URL.createObjectURL(new Blob([pdfjsWorker.default])));
   }
 
@@ -19,7 +21,13 @@ export async function readPdf(pdfUrl: string): Promise<string[]> {
   const leftMarginCounts: Record<string, number> = {};
   let leftMargin: number = -1;
 
-  for (let i = 0; i < pdf._pdfInfo.numPages; i++) {
+  const numPages = pdf._pdfInfo.numPages;
+
+  if (numPages > 1000) {
+    throw new Error(`Refusing to process a PDF with ${numPages} pages (max allowed: 1000).`);
+  }
+
+  for (let i = 0; i < numPages; i++) {
     const page = await pdf.getPage(i + 1);
 
     let textContent;

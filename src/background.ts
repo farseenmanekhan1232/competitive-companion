@@ -56,12 +56,17 @@ async function loadContentScript(tab: Tabs.Tab, parserName: string): Promise<voi
     await browser.permissions.request({ origins: permissionOrigins });
   }
 
-  await browser.scripting.executeScript({
-    target: {
-      tabId: tab.id,
-    },
-    files: ['js/content.js'],
-  });
+  try {
+    await browser.scripting.executeScript({
+      target: {
+        tabId: tab.id,
+      },
+      files: ['js/content.js'],
+    });
+  } catch (err) {
+    console.error('Failed to execute content script:', err);
+    return;
+  }
 
   sendToContent(tab.id, MessageAction.Parse, { parserName });
 }
