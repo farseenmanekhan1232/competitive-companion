@@ -5,15 +5,8 @@
   "version": "2.64.0",
   "author": "Jasper van Merle",
   "homepage_url": "https://github.com/jmerle/competitive-companion",
-  "permissions": [
-    "activeTab",
-    "contextMenus",
-    "storage",
-    "scripting"
-  ],
-  "host_permissions": [
-    "http://localhost/"
-  ],
+  "permissions": ["activeTab", "contextMenus", "storage", "scripting"],
+  "host_permissions": ["http://localhost/"],
   "icons": {
     "16": "icons/icon-16.png",
     "19": "icons/icon-19.png",

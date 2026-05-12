@@ -1,36 +1,39 @@
 function show(enabled, useSettingsInsteadOfPreferences) {
-    if (useSettingsInsteadOfPreferences) {
-        document.getElementsByClassName('state-on')[0].innerText = "Competitive Companion for Safari is currently on. You can turn it off in the Extensions section of Safari Settings.";
-        document.getElementsByClassName('state-off')[0].innerText = "Competitive Companion for Safari is currently off. You can turn it on in the Extensions section of Safari Settings.";
-        document.getElementsByClassName('state-unknown')[0].innerText = "You can turn on Competitive Companion for Safari in the Extensions section of Safari Settings.";
-        document.getElementsByClassName('open-preferences')[0].innerText = "Quit and Open Safari Settings…";
-    }
+  if (useSettingsInsteadOfPreferences) {
+    document.getElementsByClassName('state-on')[0].innerText =
+      'Competitive Companion for Safari is currently on. You can turn it off in the Extensions section of Safari Settings.';
+    document.getElementsByClassName('state-off')[0].innerText =
+      'Competitive Companion for Safari is currently off. You can turn it on in the Extensions section of Safari Settings.';
+    document.getElementsByClassName('state-unknown')[0].innerText =
+      'You can turn on Competitive Companion for Safari in the Extensions section of Safari Settings.';
+    document.getElementsByClassName('open-preferences')[0].innerText = 'Quit and Open Safari Settings…';
+  }
 
-    if (typeof enabled === "boolean") {
-        document.body.classList.toggle(`state-on`, enabled);
-        document.body.classList.toggle(`state-off`, !enabled);
-    } else {
-        document.body.classList.remove(`state-on`);
-        document.body.classList.remove(`state-off`);
-    }
+  if (typeof enabled === 'boolean') {
+    document.body.classList.toggle(`state-on`, enabled);
+    document.body.classList.toggle(`state-off`, !enabled);
+  } else {
+    document.body.classList.remove(`state-on`);
+    document.body.classList.remove(`state-off`);
+  }
 }
 
 function showError(message, useSettingsInsteadOfPreferences) {
-    const errorText = useSettingsInsteadOfPreferences
-        ? 'Extensions section of Safari Settings'
-        : 'Safari Extensions preferences';
+  const errorText = useSettingsInsteadOfPreferences
+    ? 'Extensions section of Safari Settings'
+    : 'Safari Extensions preferences';
 
-    const errorElem = document.querySelector('.state-error');
-    errorElem.innerText = `Error: ${message}. Please check ${errorText} manually if the extension is not visible.`;
-    errorElem.classList.remove('hidden');
+  const errorElem = document.querySelector('.state-error');
+  errorElem.innerText = `Error: ${message}. Please check ${errorText} manually if the extension is not visible.`;
+  errorElem.classList.remove('hidden');
 
-    document.body.classList.remove(`state-on`);
-    document.body.classList.remove(`state-off`);
-    document.body.classList.remove(`state-unknown`);
+  document.body.classList.remove(`state-on`);
+  document.body.classList.remove(`state-off`);
+  document.body.classList.remove(`state-unknown`);
 }
 
 function openPreferences() {
-    webkit.messageHandlers.controller.postMessage("open-preferences");
+  webkit.messageHandlers.controller.postMessage('open-preferences');
 }
 
-document.querySelector("button.open-preferences").addEventListener("click", openPreferences);
+document.querySelector('button.open-preferences').addEventListener('click', openPreferences);
