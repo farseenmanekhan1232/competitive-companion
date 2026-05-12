@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Competitive Companion",
   "description": "Parses competitive programming problems and sends them to various tools like CP Editor and CPH.",
-  "version": "2.63.0",
+  "version": "2.64.0",
   "author": "Jasper van Merle",
   "homepage_url": "https://github.com/jmerle/competitive-companion",
   "permissions": [

@@ -1,8 +1,8 @@
 function show(enabled, useSettingsInsteadOfPreferences) {
     if (useSettingsInsteadOfPreferences) {
-        document.getElementsByClassName('state-on')[0].innerText = "Competitive Companion’s extension is currently on. You can turn it off in the Extensions section of Safari Settings.";
-        document.getElementsByClassName('state-off')[0].innerText = "Competitive Companion’s extension is currently off. You can turn it on in the Extensions section of Safari Settings.";
-        document.getElementsByClassName('state-unknown')[0].innerText = "You can turn on Competitive Companion’s extension in the Extensions section of Safari Settings.";
+        document.getElementsByClassName('state-on')[0].innerText = "Competitive Companion's extension is currently on. You can turn it off in the Extensions section of Safari Settings.";
+        document.getElementsByClassName('state-off')[0].innerText = "Competitive Companion's extension is currently off. You can turn it on in the Extensions section of Safari Settings.";
+        document.getElementsByClassName('state-unknown')[0].innerText = "You can turn on Competitive Companion's extension in the Extensions section of Safari Settings.";
         document.getElementsByClassName('open-preferences')[0].innerText = "Quit and Open Safari Settings…";
     }
 
@@ -13,6 +13,20 @@ function show(enabled, useSettingsInsteadOfPreferences) {
         document.body.classList.remove(`state-on`);
         document.body.classList.remove(`state-off`);
     }
+}
+
+function showError(message, useSettingsInsteadOfPreferences) {
+    const errorText = useSettingsInsteadOfPreferences
+        ? 'Extensions section of Safari Settings'
+        : 'Safari Extensions preferences';
+
+    const errorElem = document.querySelector('.state-error');
+    errorElem.innerText = `Error: ${message}. Please check ${errorText} manually if the extension is not visible.`;
+    errorElem.classList.remove('hidden');
+
+    document.body.classList.remove(`state-on`);
+    document.body.classList.remove(`state-off`);
+    document.body.classList.remove(`state-unknown`);
 }
 
 function openPreferences() {

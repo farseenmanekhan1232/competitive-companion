@@ -32,11 +32,24 @@ body:not(.state-on, .state-off) :is(.state-on, .state-off) {
     display: none;
 }
 
-body.state-on :is(.state-off, .state-unknown) {
+body.state-on :is(.state-off, .state-unknown, .state-error) {
     display: none;
 }
 
-body.state-off :is(.state-on, .state-unknown) {
+body.state-off :is(.state-on, .state-unknown, .state-error) {
+    display: none;
+}
+
+body.state-error :is(.state-on, .state-off, .state-unknown) {
+    display: none;
+}
+
+.state-error {
+    color: #c0392b;
+    font-weight: 500;
+}
+
+.hidden {
     display: none;
 }
 

@@ -436,7 +436,7 @@
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Competitive Companion Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Competitive Companion Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -471,7 +471,7 @@
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Competitive Companion Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Competitive Companion Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -511,7 +511,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Competitive Companion/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Competitive Companion";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -554,7 +554,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "Competitive Companion/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Competitive Companion";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
