@@ -18,6 +18,8 @@
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Competitive Companion for Safari</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>CFBundleIconName</key>
 	<string>AppIcon</string>
 	<key>LSMinimumSystemVersion</key>
