@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Competitive Companion",
+  "name": "Competitive Companion for Safari",
   "description": "Parses competitive programming problems and sends them to various tools like CP Editor and CPH.",
   "version": "2.64.0",
   "author": "Jasper van Merle",

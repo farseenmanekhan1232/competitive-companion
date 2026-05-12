@@ -83,6 +83,7 @@ await Promise.all(
             type: 'module',
           };
         } else if (target === 'safari') {
+          manifest.name = 'Competitive Companion for Safari';
           manifest.optional_host_permissions = optionalHostPermissions;
 
           manifest.background = {
